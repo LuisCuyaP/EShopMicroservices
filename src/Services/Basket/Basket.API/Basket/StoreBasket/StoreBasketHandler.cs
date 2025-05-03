@@ -12,9 +12,11 @@ public class StoreBasketCommandValidator : AbstractValidator<StoreBasketCommand>
     }
 }
 public class StoreBasketCommandHandler(IBasketRepository repository) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
-{
+{    
     public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
-    {        
+    {
+        //communicate with dicount.grpc y calcular ultimos precios del producto
+        
         await repository.StoreBasket(command.Cart, cancellationToken);
         return new StoreBasketResult(command.Cart.UserName);
     }
