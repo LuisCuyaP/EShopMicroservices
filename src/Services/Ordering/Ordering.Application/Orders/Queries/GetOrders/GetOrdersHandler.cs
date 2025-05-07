@@ -1,8 +1,7 @@
 ﻿using BuildingBlocks.Pagination;
 
 namespace Ordering.Application.Orders.Queries.GetOrders;
-public class GetOrdersHandler(IApplicationDbContext dbContext)
-    : IQueryHandler<GetOrdersQuery, GetOrdersResult>
+public class GetOrdersHandler(IApplicationDbContext dbContext) : IQueryHandler<GetOrdersQuery, GetOrdersResult>
 {
     public async Task<GetOrdersResult> Handle(GetOrdersQuery query, CancellationToken cancellationToken)
     {
