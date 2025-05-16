@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Add services to the container.
+// Add services to the container.
 var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
@@ -11,13 +11,13 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(ValidationBehavior<,>));
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+builder.Services.AddValidatorsFromAssembly(assembly);
 
 builder.Services.AddCarter();
 
-builder.Services.AddMarten(opts => 
+builder.Services.AddMarten(opts =>
 {
-    opts.Connection(builder.Configuration.GetConnectionString("Database")!);
+    opts.Connection(builder.Configuration.GetConnectionString("Database")!);    
 }).UseLightweightSessions();
 
 if (builder.Environment.IsDevelopment())
@@ -25,14 +25,12 @@ if (builder.Environment.IsDevelopment())
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
-//comprobaciones de salud en la aplicacion
 builder.Services.AddHealthChecks()
     .AddNpgSql(builder.Configuration.GetConnectionString("Database")!);
 
-
 var app = builder.Build();
 
-//Configure the HTTP request pipeline
+// Configure the HTTP request pipeline.
 app.MapCarter();
 
 app.UseExceptionHandler(options => { });

@@ -1,9 +1,9 @@
-﻿
-namespace Basket.API.Basket.CheckoutBasket;
+﻿namespace Basket.API.Basket.CheckoutBasket;
 
 public record CheckoutBasketRequest(BasketCheckoutDto BasketCheckoutDto);
 public record CheckoutBasketResponse(bool IsSuccess);
-public class CheckoutBasketHandler : ICarterModule
+
+public class CheckoutBasketEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
@@ -22,6 +22,5 @@ public class CheckoutBasketHandler : ICarterModule
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .WithSummary("Checkout Basket")
         .WithDescription("Checkout Basket");
-
     }
 }

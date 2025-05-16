@@ -42,7 +42,7 @@ namespace Discount.Grpc.Migrations
                         {
                             Id = 1,
                             Amount = 150,
-                            Description = "Iphone Discount",
+                            Description = "IPhone Discount",
                             ProductName = "IPhone X"
                         },
                         new

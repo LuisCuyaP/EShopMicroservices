@@ -4,11 +4,11 @@ using MassTransit;
 
 namespace Basket.API.Basket.CheckoutBasket;
 
-public record CheckoutBasketCommand(BasketCheckoutDto BasketCheckoutDto)
+public record CheckoutBasketCommand(BasketCheckoutDto BasketCheckoutDto) 
     : ICommand<CheckoutBasketResult>;
 public record CheckoutBasketResult(bool IsSuccess);
 
-public class CheckoutBasketCommandValidator
+public class CheckoutBasketCommandValidator 
     : AbstractValidator<CheckoutBasketCommand>
 {
     public CheckoutBasketCommandValidator()
@@ -28,6 +28,7 @@ public class CheckoutBasketCommandHandler
         // Set totalprice on basketcheckout event message
         // send basket checkout event to rabbitmq using masstransit
         // delete the basket
+
         var basket = await repository.GetBasket(command.BasketCheckoutDto.UserName, cancellationToken);
         if (basket == null)
         {

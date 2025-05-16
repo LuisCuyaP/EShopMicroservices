@@ -24,6 +24,5 @@ public class BasketCheckoutModel
 }
 
 // wrapper classes
-// el nombre del parametro BasketCheckoutDto debe ser el mismo del request que esta en el modelo del api
 public record CheckoutBasketRequest(BasketCheckoutModel BasketCheckoutDto);
 public record CheckoutBasketResponse(bool IsSuccess);
